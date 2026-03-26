@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEDUSA | Cardápio Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-mode">
+    <div id="app" class="layout-container">
+        
+        <!-- Sidebar Esquerda -->
+        <aside class="sidebar">
+            <header class="sidebar-header">
+                <div class="logo-container">
+                    <img src="logo-medusa.png" alt="Medusa Drink House" id="main-logo">
+                    <div class="neon-glow"></div>
+                </div>
+                <div class="brand-text">
+                    <p class="brand-name">MEDUSA</p>
+                    <p class="brand-tagline">DRINK HOUSE</p>
+                </div>
+            </header>
+
+            <nav class="categories-sidebar" id="categories-container">
+                <!-- Categorias injetadas pelo main.js -->
+            </nav>
+            
+            <footer class="sidebar-footer">
+                <p>© 2026 Medusa Group</p>
+                <a href="login.html" class="admin-link" style="color: #222; text-decoration: none; font-size: 0.6rem; margin-top: 10px; display: block;">ADMIN DASHBOARD</a>
+            </footer>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <header class="mobile-header">
+                 <img src="logo-medusa.png" alt="Medusa" class="mobile-logo">
+                 <p>MEDUSA MENU</p>
+            </header>
+            
+            <section class="menu-grid" id="menu-items">
+                <!-- Items injected by main.js -->
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>

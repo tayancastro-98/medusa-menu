@@ -1,0 +1,501 @@
+:root {
+  --primary: #06ef6b;
+  /* Neon Green Official Medusa */
+  --bg-dark: #070707;
+  --bg-sidebar: #0e0e0e;
+  --bg-card: #141414;
+  --glass: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --sidebar-width: 320px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* Escondendo a barra de rolagem globalmente */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE e Edge */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari e Opera */
+}
+
+/* Layout Container */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Estilizada à Esquerda */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--bg-sidebar);
+  border-right: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  overflow-y: auto;
+  /* Escondendo a barra de rolagem na sidebar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Aumento Expressivo da Logo */
+.logo-container {
+  position: relative;
+  width: 300px;
+  /* Logo aumentada conforme pedido */
+  height: 300px;
+  margin: 0 auto 20px;
+}
+
+#main-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(6, 239, 107, 0.4));
+  z-index: 2;
+  position: relative;
+}
+
+.neon-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: var(--primary);
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.brand-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 14px;
+  margin-left: 14px;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.brand-tagline {
+  font-size: 0.75rem;
+  letter-spacing: 6px;
+  color: var(--primary);
+  margin-top: 8px;
+  font-weight: 700;
+}
+
+/* Navegação Sidebar */
+.categories-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.cat-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  padding: 16px 20px;
+  border-radius: 12px;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cat-btn:hover {
+  background: var(--glass);
+  color: #fff;
+}
+
+.cat-btn.active {
+  background-color: var(--primary);
+  color: #000;
+  border-color: var(--primary);
+  box-shadow: 0 0 25px rgba(6, 239, 107, 0.2);
+  transform: scale(1.02);
+}
+
+.sidebar-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #444;
+  letter-spacing: 1px;
+}
+
+/* Área Principal Conteúdo */
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 40px;
+  width: calc(100% - var(--sidebar-width));
+  background: radial-gradient(circle at center top, rgba(6, 239, 107, 0.03) 0%, transparent 50%);
+}
+
+.menu-grid {
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+}
+
+.mobile-header {
+  display: none;
+  background-color: var(--bg-sidebar);
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  border-bottom: 1px solid var(--glass-border);
+  align-items: center;
+  gap: 15px;
+}
+
+.mobile-logo {
+  width: 40px;
+  height: 40px;
+}
+
+/* Cards dos Produtos */
+.drink-card {
+  background: linear-gradient(145deg, #121212, #0a0a0a);
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: card-reveal 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.drink-card:hover {
+  border-color: rgba(6, 239, 107, 0.4);
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.drink-card .item-img {
+  width: 100%;
+  height: 220px;
+  background-color: #080808;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.drink-card .item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-info h3 {
+  font-size: 1.5rem;
+  font-family: 'Outfit', sans-serif;
+  margin-bottom: 10px;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.item-info .description {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  min-height: 54px;
+}
+
+.item-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--primary);
+}
+
+.add-btn {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+
+.add-btn:hover {
+  background-color: var(--primary);
+  color: #000;
+  border-color: var(--primary);
+  transform: rotate(90deg);
+}
+
+/* Responsividade Mobile */
+/* Admin Specific Styles */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.add-new-btn {
+  background-color: var(--primary);
+  color: #000;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+
+.admin-table-container {
+  background: var(--bg-sidebar);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.admin-table th {
+  background: var(--glass);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+}
+
+.admin-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.status-active {
+  background: rgba(6, 239, 107, 0.1);
+  color: var(--primary);
+}
+
+.status-inactive {
+  background: rgba(255, 0, 0, 0.1);
+  color: #ff4444;
+}
+
+.btn-icon {
+  background: transparent;
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.btn-icon:hover {
+  background: var(--glass);
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+.modal-content {
+  background: var(--bg-sidebar);
+  margin: 10% auto;
+  padding: 40px;
+  border-radius: 28px;
+  width: 90%;
+  max-width: 500px;
+  border: 1px solid var(--glass-border);
+}
+
+.modal-content h2 {
+  margin-bottom: 30px;
+  font-family: 'Outfit';
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--bg-dark);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  padding: 12px 15px;
+  border-radius: 12px;
+  font-family: inherit;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #000;
+  border: none;
+  flex: 1;
+  padding: 15px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.admin-section {
+  display: none;
+}
+
+.admin-section.active {
+  display: block;
+}
+
+.promo-badge {
+  background: #000;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(6, 239, 107, 0.4);
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+/* Responsividade Mobile e Desktop Menor */
+@media (max-width: 1024px) {
+  .layout-container { flex-direction: column; }
+  .sidebar { 
+     width: 100%; height: auto; position: relative; padding: 20px; 
+     border-right: none; border-bottom: 1px solid var(--glass-border);
+  }
+  .main-content { margin-left: 0; width: 100%; padding: 20px; }
+  .mobile-header { display: flex; }
+  .sidebar-header { margin-bottom: 20px; }
+  .logo-container { width: 120px; height: 120px; }
+  .neon-glow { width: 100px; height: 100px; }
+  .brand-name { font-size: 1.5rem; letter-spacing: 8px; }
+  .brand-tagline { font-size: 0.6rem; letter-spacing: 4px; }
+  .categories-sidebar { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .cat-btn { padding: 10px 15px; font-size: 0.75rem; text-align: center;}
+  
+  /* Admin area on mobile */
+  .admin-header { flex-direction: column; gap: 15px; text-align: center; }
+  .admin-table { display: block; overflow-x: auto; white-space: nowrap; }
+  .modal-content { width: 95%; padding: 25px; margin: 20% auto; }
+}
+
+@media (max-width: 600px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  .drink-card .item-img { height: 200px; }
+  .price { font-size: 1.4rem; }
+  .add-btn { width: 40px; height: 40px; font-size: 1.2rem; }
+}
